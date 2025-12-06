@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mssql-mcp-server:
+    build: .
+    image: mssql-mcp-server:latest
+    container_name: mssql-mcp-server
+    environment:
+      - MSSQL_HOST=${MSSQL_HOST:-host.docker.internal}
+      - MSSQL_PORT=${MSSQL_PORT:-1433}
+      - MSSQL_DATABASE=${MSSQL_DATABASE:-master}
+      - MSSQL_USER=${MSSQL_USER:-sa}
+      - MSSQL_PASSWORD=${MSSQL_PASSWORD:-YourStrong@Passw0rd}
+      - MSSQL_ENCRYPT=${MSSQL_ENCRYPT:-true}
+      - MSSQL_TRUST_SERVER_CERTIFICATE=${MSSQL_TRUST_SERVER_CERTIFICATE:-false}
+      - MSSQL_ALLOW_WRITE_OPERATIONS=${MSSQL_ALLOW_WRITE_OPERATIONS:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./.env:/app/.env:ro
+    network_mode: host
+    restart: unless-stopped

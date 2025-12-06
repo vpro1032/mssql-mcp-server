@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Test MSSQL Database
+  mssql-test:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-test-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Test1234!@#$
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./test-data:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Test1234!@#$ -Q "SELECT 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - test-network
+
+  # MCP Server Under Test
+  mssql-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mssql-mcp-test
+    depends_on:
+      mssql-test:
+        condition: service_healthy
+    environment:
+      - MSSQL_HOST=mssql-test
+      - MSSQL_PORT=1433
+      - MSSQL_DATABASE=TestDB
+      - MSSQL_USER=sa
+      - MSSQL_PASSWORD=Test1234!@#$
+      - MSSQL_ENCRYPT=false
+      - MSSQL_TRUST_SERVER_CERTIFICATE=true
+      - MSSQL_ALLOW_WRITE_OPERATIONS=true
+      - LOG_LEVEL=DEBUG
+    stdin_open: true
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
