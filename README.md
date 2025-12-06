@@ -180,20 +180,6 @@ Patrons get access to:
 - 🐛 **Report bugs** and request features via [GitHub Issues](https://github.com/vpro1032/mssql-mcp-server/issues)
 - 📖 **Improve documentation** by submitting pull requests
 - 💬 **Spread the word** - Share with colleagues and on social media
-- ☕ **Buy us a coffee** via [Ko-fi](https://ko-fi.com/your-kofi-link) (one-time donations)
-
-### Enterprise Support
-
-Need dedicated support, custom features, or professional services?
-
-📧 **Contact us:** enterprise@yourdomain.com
-
-We offer:
-- Custom feature development
-- Priority bug fixes
-- On-site training
-- Architecture consulting
-- SLA-backed support contracts
 
 ---
 
