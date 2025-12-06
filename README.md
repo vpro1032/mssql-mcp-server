@@ -163,7 +163,7 @@ This project is maintained by independent developers. Your support helps us:
 - 🔒 Enhance security features
 - 🎯 Provide faster support and updates
 
-**[Support us on Patreon](https://www.patreon.com/your-patreon-link)** ← Replace with your actual Patreon link
+**[Support us on Patreon](https://www.patreon.com/c/Roger3333)**
 
 ### Supporter Benefits
 
